@@ -56,8 +56,8 @@ const ThemeToggle = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      stroke={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
-      fill={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
+      stroke={theme === 'dark' ? 'white' : 'black'}
+      fill={theme === 'dark' ? 'white' : 'black'}
       onClick={toggleDarkMode}
       style={{
         cursor: 'pointer',
@@ -65,18 +65,18 @@ const ThemeToggle = () => {
       }}
     >
       <mask id="myMask2">
-        <rect x="0" y="0" width="100%" height="100%" fill="white" />
+        <rect x="0" y="0" width="100%" height="100%" fill="white" /> {/* Reverted fill */}
         <animated.circle
           style={maskedCircleProps}
           r="9"
-          fill={theme === 'dark' ? 'black' : 'white'} // Swapped color logic
+          fill={theme === 'dark' ? 'white' : 'black'} 
         />
       </mask>
       <animated.circle
         cx="12"
         cy="12"
         style={centerCircleProps}
-        fill={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
+        fill={theme === 'dark' ? 'white' : 'black'} 
         mask="url(#myMask2)"
       />
       <animated.g stroke={theme === 'dark' ? 'white' : 'black'} style={linesProps}>
