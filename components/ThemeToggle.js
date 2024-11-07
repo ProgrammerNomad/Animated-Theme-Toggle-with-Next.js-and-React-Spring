@@ -28,9 +28,8 @@ const ThemeToggle = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  // Swapped 'dark' and 'light' here
   const { r, transform, cx, cy, opacity } = properties[
-    theme === 'light' ? 'dark' : 'light' 
+    theme === 'light' ? 'dark' : 'light'
   ];
 
   const svgContainerProps = useSpring({
@@ -54,11 +53,11 @@ const ThemeToggle = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      stroke={theme === 'dark' ? 'white' : 'currentColor'}
+      stroke={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
+      fill={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
       onClick={toggleDarkMode}
       style={{
         cursor: 'pointer',
@@ -67,16 +66,20 @@ const ThemeToggle = () => {
     >
       <mask id="myMask2">
         <rect x="0" y="0" width="100%" height="100%" fill="white" />
-        <animated.circle style={maskedCircleProps} r="9" fill="black" />
+        <animated.circle
+          style={maskedCircleProps}
+          r="9"
+          fill={theme === 'dark' ? 'black' : 'white'} // Swapped color logic
+        />
       </mask>
       <animated.circle
         cx="12"
         cy="12"
         style={centerCircleProps}
-        fill="black"
+        fill={theme === 'dark' ? 'white' : 'black'} // Swapped color logic
         mask="url(#myMask2)"
       />
-      <animated.g stroke="currentColor" style={linesProps}>
+      <animated.g stroke={theme === 'dark' ? 'white' : 'black'} style={linesProps}>
         <line x1="12" y1="1" x2="12" y2="3" />
         <line x1="12" y1="21" x2="12" y2="23" />
         <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
