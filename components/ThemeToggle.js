@@ -28,8 +28,9 @@ const ThemeToggle = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  // Swapped 'dark' and 'light' here
   const { r, transform, cx, cy, opacity } = properties[
-    theme === 'dark' ? 'dark' : 'light' // Use theme directly
+    theme === 'light' ? 'dark' : 'light' 
   ];
 
   const svgContainerProps = useSpring({
