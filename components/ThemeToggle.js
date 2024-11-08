@@ -4,14 +4,14 @@ import { useTheme } from 'next-themes';
 import { useSpring, animated } from 'react-spring';
 
 const properties = {
-  dark: {
+  dark: { // Properties for the sun icon
     r: 9,
     transform: 'rotate(40deg)',
     cx: 12,
     cy: 4,
     opacity: 0,
   },
-  light: {
+  light: { // Properties for the moon icon
     r: 5,
     transform: 'rotate(90deg)',
     cx: 30,
@@ -28,8 +28,9 @@ const ThemeToggle = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  // Corrected logic to show correct icon based on theme
   const { r, transform, cx, cy, opacity } = properties[
-    theme === 'light' ? 'dark' : 'light'
+    theme === 'dark' ? 'light' : 'dark' 
   ];
 
   const svgContainerProps = useSpring({
@@ -65,18 +66,18 @@ const ThemeToggle = () => {
       }}
     >
       <mask id="myMask2">
-        <rect x="0" y="0" width="100%" height="100%" fill="white" /> {/* Reverted fill */}
+        <rect x="0" y="0" width="100%" height="100%" fill="white" />
         <animated.circle
           style={maskedCircleProps}
           r="9"
-          fill={theme === 'dark' ? 'white' : 'black'} 
+          fill={theme === 'dark' ? 'white' : 'black'}
         />
       </mask>
       <animated.circle
         cx="12"
         cy="12"
         style={centerCircleProps}
-        fill={theme === 'dark' ? 'white' : 'black'} 
+        fill={theme === 'dark' ? 'white' : 'black'}
         mask="url(#myMask2)"
       />
       <animated.g stroke={theme === 'dark' ? 'white' : 'black'} style={linesProps}>
