@@ -1,17 +1,18 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 const properties = {
-  dark: { // Properties for the sun icon
+  dark: {
     r: 9,
     transform: 'rotate(40deg)',
     cx: 12,
     cy: 4,
     opacity: 0,
   },
-  light: { // Properties for the moon icon
+  light: {
     r: 5,
     transform: 'rotate(90deg)',
     cx: 30,
@@ -22,15 +23,20 @@ const properties = {
 };
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setTheme(resolvedTheme);
+  }, [resolvedTheme, setTheme]);
 
   const toggleDarkMode = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  // Corrected logic to show correct icon based on theme
   const { r, transform, cx, cy, opacity } = properties[
-    theme === 'dark' ? 'light' : 'dark' 
+    theme === 'light' ? 'dark' : 'light'
   ];
 
   const svgContainerProps = useSpring({
@@ -70,7 +76,7 @@ const ThemeToggle = () => {
         <animated.circle
           style={maskedCircleProps}
           r="9"
-          fill={theme === 'dark' ? 'white' : 'black'}
+          fill={theme === 'dark' ? 'black' : 'white'}
         />
       </mask>
       <animated.circle
