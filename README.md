@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/06c49714-16e9-4eab-80d4-77fe58638901/deploy-status)](https://app.netlify.com/sites/chic-torrone-c1fd6a/deploys)
+
 # Animated Theme Toggle with Next.js and React Spring
 
 This project demonstrates how to create an animated dark/light mode toggle in a Next.js application using React Spring. It's inspired by the example on [jfelix.info](https://jfelix.info/blog/using-react-spring-to-animate-svg-icons-dark-mode-toggle) but adapted for use with `next-themes`.
