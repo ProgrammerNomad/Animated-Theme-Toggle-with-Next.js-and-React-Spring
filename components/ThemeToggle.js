@@ -76,7 +76,7 @@ const ThemeToggle = () => {
         <animated.circle
           style={maskedCircleProps}
           r="9"
-          fill={theme === 'dark' ? 'black' : 'white'}
+          fill={theme === 'dark' ? 'white' : 'black'}
         />
       </mask>
       <animated.circle
