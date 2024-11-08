@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 const properties = {
@@ -24,19 +24,18 @@ const properties = {
 
 const ThemeToggle = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(resolvedTheme === 'dark');
 
   useEffect(() => {
-    setMounted(true);
-    setTheme(resolvedTheme);
-  }, [resolvedTheme, setTheme]);
+    setIsDarkMode(resolvedTheme === 'dark');
+  }, [resolvedTheme]);
 
   const toggleDarkMode = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   const { r, transform, cx, cy, opacity } = properties[
-    theme === 'light' ? 'dark' : 'light'
+    isDarkMode ? 'light' : 'dark'
   ];
 
   const svgContainerProps = useSpring({
@@ -63,8 +62,8 @@ const ThemeToggle = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      stroke={theme === 'dark' ? 'white' : 'black'}
-      fill={theme === 'dark' ? 'white' : 'black'}
+      stroke={isDarkMode ? 'white' : 'black'} // Use isDarkMode
+      fill={isDarkMode ? 'white' : 'black'} // Use isDarkMode
       onClick={toggleDarkMode}
       style={{
         cursor: 'pointer',
@@ -76,17 +75,17 @@ const ThemeToggle = () => {
         <animated.circle
           style={maskedCircleProps}
           r="9"
-          fill={theme === 'dark' ? 'white' : 'black'}
+          fill={isDarkMode ? 'white' : 'black'} // Use isDarkMode
         />
       </mask>
       <animated.circle
         cx="12"
         cy="12"
         style={centerCircleProps}
-        fill={theme === 'dark' ? 'white' : 'black'}
+        fill={isDarkMode ? 'white' : 'black'} // Use isDarkMode
         mask="url(#myMask2)"
       />
-      <animated.g stroke={theme === 'dark' ? 'white' : 'black'} style={linesProps}>
+      <animated.g stroke={isDarkMode ? 'white' : 'black'} style={linesProps}>
         <line x1="12" y1="1" x2="12" y2="3" />
         <line x1="12" y1="21" x2="12" y2="23" />
         <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
