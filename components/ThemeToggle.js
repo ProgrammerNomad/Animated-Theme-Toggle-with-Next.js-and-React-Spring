@@ -24,7 +24,7 @@ const properties = {
 
 const ThemeToggle = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(resolvedTheme === 'dark');
+  const [isDarkMode, setIsDarkMode] = useState(resolvedTheme === '');
 
   useEffect(() => {
     setIsDarkMode(resolvedTheme === 'dark');
